@@ -27,7 +27,7 @@ export class NotificationService implements INotificationService {
             channel.publish(
                 exchangeName,
                 "",
-                Buffer.from(JSON.stringify({order, status}))
+                Buffer.from(JSON.stringify({orderId: order.id, userId: order.userId, productId: order.productId, status}))
             );
             await channel.close();
             await connection.close();

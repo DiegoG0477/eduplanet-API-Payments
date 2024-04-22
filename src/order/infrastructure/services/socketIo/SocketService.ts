@@ -8,7 +8,7 @@ export class SocketService implements ISocketService {
         this.socketioRepository = new SocketioRepository();
     }
 
-    async responseClient(data: any): Promise<void> {
-        this.socketioRepository.emit("order:processed", data);
+    async responseClient(data: any, userId:string): Promise<void> {
+        this.socketioRepository.emit("order:processed", { data, userId });
     }
 }

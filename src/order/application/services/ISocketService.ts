@@ -1,3 +1,3 @@
 export interface ISocketService {
-    responseClient(data: any): Promise<void>;
+    responseClient(data: any, userId: string): Promise<void>;
 }
