@@ -16,6 +16,7 @@ export class SocketioRepository {
     }
 
     public emit(event: string, data: any): void {
+        console.log('url', this.url);
         this.socket.emit(event, data);
     }
 

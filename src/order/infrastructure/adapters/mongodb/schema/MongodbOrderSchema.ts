@@ -1,4 +1,4 @@
-import { Order } from "../../../../domain/repositories/Order";
+import { Order } from "../../../../domain/entities/Order";
 import mongoose, { Schema, Document } from 'mongoose';
 
 type IOrder = Order & Document;

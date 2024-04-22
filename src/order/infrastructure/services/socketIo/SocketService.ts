@@ -9,6 +9,9 @@ export class SocketService implements ISocketService {
     }
 
     async responseClient(data: any, userId:string): Promise<void> {
+        console.log('sending notificaiton to client', data, userId);
         this.socketioRepository.emit("order:processed", { data, userId });
+        this.socketioRepository.disconnect();
+        console.log('disconnected from socket');
     }
 }

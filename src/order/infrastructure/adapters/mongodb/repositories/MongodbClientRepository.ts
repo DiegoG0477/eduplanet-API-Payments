@@ -1,5 +1,5 @@
 import { Client } from "../../../../domain/entities/Client";
-import { ClientRepository } from "../../../../domain/entities/ClientRepository";
+import { ClientRepository } from "../../../../domain/repositories/ClientRepository";
 import { ClientMongodbModel } from "../schema/MongodbClientSchema";
 
 export class MongodbClientRepository implements ClientRepository {
