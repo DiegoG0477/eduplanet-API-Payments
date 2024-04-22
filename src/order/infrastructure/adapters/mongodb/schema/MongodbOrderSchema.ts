@@ -4,8 +4,8 @@ import mongoose, { Schema, Document } from 'mongoose';
 type IOrder = Order & Document;
 
 const OrderSchema: Schema = new Schema({
-    idUser: { type: String, required: true },
-    idProduct: { type: String, required: true },
+    userId: { type: String, required: true },
+    productId: { type: String, required: true },
     status: { type: String, required: true },
     createdAt: { type: Date, required: true },
     updatedAt: { type: Date, required: true }
