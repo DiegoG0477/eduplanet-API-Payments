@@ -17,10 +17,13 @@ export class ValidateOrderUseCase {
 
         if (valid) {
             console.log('order aproved');
-            await this.notificationService.sendNotification(order, "SUCCESS");
+            await this.notificationService.sendProcessNotification(order, "SUCCESS");
+            await this.notificationService.sendMonitoringNotification(order, "SUCCESS");
             await this.socketService.responseClient({status:"success", msg:"Order is valid"}, order.userId);
         } else {
-            await this.notificationService.sendNotification(order, "ERROR");
+            console.log('order not aproved');
+            await this.notificationService.sendProcessNotification(order, "ERROR");
+            await this.notificationService.sendMonitoringNotification(order, "ERROR");
             await this.socketService.responseClient({status:"error", msg:"Order is not valid"}, order.userId);
         }
 
