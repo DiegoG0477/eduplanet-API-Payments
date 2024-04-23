@@ -1,38 +1,33 @@
 import socketIoClient, { Socket } from "socket.io-client";
 
 export class SocketioRepository {
-    private socket: Socket | null = null;
+    private socket: Socket | undefined;
     private url: string = process.env.SOCKETIO_URL ?? "http://localhost:3000";
 
-    constructor() {}
+    constructor() {
+        this.connect();
+    }
 
-    private connect(): void {
-        if (!this.socket) {
-            this.socket = socketIoClient(this.url, {
-                transports: ['websocket'],
-                upgrade: false 
-            });
-        }
+    public connect(): void {
+        this.socket = socketIoClient(this.url, {
+            transports: ['websocket'],
+            upgrade: false 
+        });
     }
 
     public on(event: string, callback: (data: any) => void): void {
-        this.connect(); 
-        if (this.socket) {
-            this.socket.on(event, callback);
-        }
+        if(this.socket === undefined) this.connect();
+        this.socket?.on(event, callback);
     }
 
     public emit(event: string, data: any): void {
-        this.connect(); 
-        if (this.socket) {
-            this.socket.emit(event, data);
-        }
+        console.log('url', this.url);
+        if(this.socket === undefined) this.connect();
+        this.socket?.emit(event, data);
     }
 
     public disconnect(): void {
-        if (this.socket) {
-            this.socket.disconnect();
-            this.socket = null; 
-        }
+        if(this.socket === undefined) return;
+        this.socket.disconnect();
     }
 }

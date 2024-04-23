@@ -1,5 +1,5 @@
-import { SocketioRepository } from "../../adapters/socketio/SocketioRepository";
 import { ISocketService } from "../../../application/services/ISocketService";
+import { SocketioRepository } from "../../adapters/socketio/SocketioRepository";
 
 export class SocketService implements ISocketService {
     private socketioRepository: SocketioRepository;
@@ -9,9 +9,9 @@ export class SocketService implements ISocketService {
     }
 
     async responseClient(data: any, userId:string): Promise<void> {
-        console.log('sending notification to client', data, userId);
+        console.log('sending notificaiton to client', data, userId);
         this.socketioRepository.emit("order:processed", { data, userId });
-        this.socketioRepository.disconnect();
+        // this.socketioRepository.disconnect();
         console.log('disconnected from socket');
     }
 }
